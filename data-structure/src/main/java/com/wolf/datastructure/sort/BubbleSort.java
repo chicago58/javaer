@@ -1,7 +1,7 @@
 package com.wolf.datastructure.sort;
 
-import com.wolf.javacommon.PrintUtil;
-import com.wolf.javacommon.SwapUtil;
+import com.wolf.javacommon.util.PrintUtil;
+import com.wolf.javacommon.util.SwapUtil;
 
 /**
  * @Description 冒泡排序

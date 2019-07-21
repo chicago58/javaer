@@ -1,7 +1,7 @@
 package com.wolf.algorithm;
 
 
-import com.wolf.javacommon.TreeNode;
+import com.wolf.javacommon.bean.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

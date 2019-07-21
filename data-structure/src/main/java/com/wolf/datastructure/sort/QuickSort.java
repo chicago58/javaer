@@ -1,7 +1,7 @@
 package com.wolf.datastructure.sort;
 
 /**
- * @Description
+ * @Description 快速排序
  * @Author wangqikang
  * @Date 2019-07-14 10:06
  */

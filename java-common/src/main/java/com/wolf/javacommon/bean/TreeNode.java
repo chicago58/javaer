@@ -1,6 +1,5 @@
-package com.wolf.javacommon;
+package com.wolf.javacommon.bean;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
