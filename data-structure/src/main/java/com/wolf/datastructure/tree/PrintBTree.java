@@ -1,7 +1,7 @@
-package com.wolf.algorithm;
+package com.wolf.datastructure.tree;
 
 
-import com.wolf.javacommon.bean.TreeNode;
+import com.wolf.javacommon.bean.BTreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -11,14 +11,14 @@ import java.util.Stack;
  * @Author: liu lei
  * @Date: 2019/7/21
  */
-public class PrintTree {
+public class PrintBTree {
 
     /**
      * 递归前序遍历
      *
      * @param node
      */
-    private static void preOrder(TreeNode node) {
+    private static void preOrder(BTreeNode node) {
         if (node == null) {
             return;
         }
@@ -32,7 +32,7 @@ public class PrintTree {
      *
      * @param node
      */
-    private static void midOrder(TreeNode node) {
+    private static void midOrder(BTreeNode node) {
         if (node == null) {
             return;
         }
@@ -46,7 +46,7 @@ public class PrintTree {
      *
      * @param node
      */
-    private static void postOrder(TreeNode node) {
+    private static void postOrder(BTreeNode node) {
         if (node == null) {
             return;
         }
@@ -60,11 +60,11 @@ public class PrintTree {
      *
      * @return
      */
-    private static void fPreOrder(TreeNode node) {
-        Stack<TreeNode> s = new Stack();
+    private static void fPreOrder(BTreeNode node) {
+        Stack<BTreeNode> s = new Stack();
         s.push(node);
         while (!s.empty()) {
-            TreeNode n = s.pop();
+            BTreeNode n = s.pop();
             System.out.print(n.getData() + " ");
             if (n.getRight() != null) {
                 s.push(n.getRight());
@@ -81,9 +81,9 @@ public class PrintTree {
      *
      * @return
      */
-    private static void fMidOrder(TreeNode node) {
-        Stack<TreeNode> s = new Stack();
-        TreeNode cur = node;
+    private static void fMidOrder(BTreeNode node) {
+        Stack<BTreeNode> s = new Stack();
+        BTreeNode cur = node;
         while (!s.empty() || cur != null) {
             while (cur != null) {
                 s.push(cur);
@@ -100,12 +100,12 @@ public class PrintTree {
      *
      * @return
      */
-    private static void fPostOrder(TreeNode node) {
-        Stack<TreeNode> s1 = new Stack();
-        Stack<TreeNode> s2 = new Stack();
+    private static void fPostOrder(BTreeNode node) {
+        Stack<BTreeNode> s1 = new Stack();
+        Stack<BTreeNode> s2 = new Stack();
         s1.push(node);
         while (!s1.empty()) {
-            TreeNode n = s1.pop();
+            BTreeNode n = s1.pop();
             if (n.getLeft() != null) {
                 s1.push(n.getLeft());
             }
@@ -119,11 +119,11 @@ public class PrintTree {
         }
     }
 
-    private static void levelOrder(TreeNode node) throws InterruptedException {
-        Queue<TreeNode> q = new ArrayDeque();
+    private static void levelOrder(BTreeNode node) throws InterruptedException {
+        Queue<BTreeNode> q = new ArrayDeque();
         q.add(node);
         while (!q.isEmpty()) {
-            TreeNode n = q.poll();
+            BTreeNode n = q.poll();
             System.out.print(n.getData() + " ");
             if (n.getLeft() != null) {
                 q.add(n.getLeft());
@@ -144,19 +144,19 @@ public class PrintTree {
      * / \
      *5  6
      */
-    private static TreeNode buildTree() {
-        TreeNode node = new TreeNode();
-        TreeNode left1 = new TreeNode();
-        TreeNode right1 = new TreeNode();
+    private static BTreeNode buildTree() {
+        BTreeNode node = new BTreeNode();
+        BTreeNode left1 = new BTreeNode();
+        BTreeNode right1 = new BTreeNode();
         node.setData(1);
         node.setLeft(left1);
         node.setRight(right1);
         right1.setData(3);
-        TreeNode right2 = new TreeNode();
+        BTreeNode right2 = new BTreeNode();
         left1.setData(2);
         left1.setRight(right2);
-        TreeNode left3 = new TreeNode();
-        TreeNode right3 = new TreeNode();
+        BTreeNode left3 = new BTreeNode();
+        BTreeNode right3 = new BTreeNode();
         right2.setData(4);
         right2.setLeft(left3);
         right2.setRight(right3);
