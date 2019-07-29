@@ -1,6 +1,7 @@
 package com.wolf.javacommon.bean;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -9,8 +10,13 @@ import lombok.Setter;
  */
 @Setter
 @Getter
+@NoArgsConstructor
 public class BTreeNode {
     private int data;
     private BTreeNode left;
     private BTreeNode right;
+
+    public BTreeNode(int data) {
+        this.data = data;
+    }
 }
