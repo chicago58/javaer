@@ -14,7 +14,7 @@ import java.util.Stack;
 public class PrintBTree {
 
     /**
-     * 递归前序遍历
+     * 递归实现前序遍历
      *
      * @param node
      */
@@ -28,7 +28,7 @@ public class PrintBTree {
     }
 
     /**
-     * 递归中序遍历
+     * 递归实现中序遍历
      *
      * @param node
      */
@@ -42,7 +42,7 @@ public class PrintBTree {
     }
 
     /**
-     * 递归后序遍历
+     * 递归实现后序遍历
      *
      * @param node
      */
@@ -56,11 +56,12 @@ public class PrintBTree {
     }
 
     /**
-     * 非递归前序遍历
+     * 非递归实现前序遍历
      *
      * @return
      */
     private static void fPreOrder(BTreeNode node) {
+        // 创建存放结点
         Stack<BTreeNode> s = new Stack();
         s.push(node);
         while (!s.empty()) {
@@ -77,12 +78,14 @@ public class PrintBTree {
 
 
     /**
-     * 非递归中序遍历
+     * 非递归实现中序遍历
      *
      * @return
      */
     private static void fMidOrder(BTreeNode node) {
+        // 创建存放结点
         Stack<BTreeNode> s = new Stack();
+        // 创建变量指针cur表示当前正在访问的结点
         BTreeNode cur = node;
         while (!s.empty() || cur != null) {
             while (cur != null) {
@@ -96,11 +99,12 @@ public class PrintBTree {
     }
 
     /**
-     * 非递归后序遍历
+     * 非递归实现后序遍历
      *
      * @return
      */
     private static void fPostOrder(BTreeNode node) {
+        // 创建2个栈用于存放结点
         Stack<BTreeNode> s1 = new Stack();
         Stack<BTreeNode> s2 = new Stack();
         s1.push(node);
@@ -119,6 +123,12 @@ public class PrintBTree {
         }
     }
 
+    /**
+     * 层序遍历
+     *
+     * @param node
+     * @throws InterruptedException
+     */
     private static void levelOrder(BTreeNode node) throws InterruptedException {
         Queue<BTreeNode> q = new ArrayDeque();
         q.add(node);
@@ -136,51 +146,73 @@ public class PrintBTree {
 
     /**
      * 创建二叉树
-     *    1
-     *  /   \
-     *  2   3
-     *  \
-     *  4
-     * / \
-     *5  6
+     * <p>
+     *     1
+     *   /   \
+     *  2    3
+     *   \
+     *   4
+     *  / \
+     * 5  6
      */
     private static BTreeNode buildTree() {
         BTreeNode node = new BTreeNode();
-        BTreeNode left1 = new BTreeNode();
-        BTreeNode right1 = new BTreeNode();
         node.setData(1);
+        BTreeNode left1 = new BTreeNode();
+        left1.setData(2);
+        BTreeNode right1 = new BTreeNode();
+        right1.setData(3);
+
         node.setLeft(left1);
         node.setRight(right1);
-        right1.setData(3);
+
         BTreeNode right2 = new BTreeNode();
-        left1.setData(2);
-        left1.setRight(right2);
-        BTreeNode left3 = new BTreeNode();
-        BTreeNode right3 = new BTreeNode();
         right2.setData(4);
+        left1.setRight(right2);
+
+        BTreeNode left3 = new BTreeNode();
+        left3.setData(5);
+        BTreeNode right3 = new BTreeNode();
+        right3.setData(6);
+
         right2.setLeft(left3);
         right2.setRight(right3);
-        left3.setData(5);
-        right3.setData(6);
         return node;
     }
 
 
     public static void main(String[] args) {
-//        preOrder(buildTree());
-//        System.out.println();
-//        midOrder(buildTree());
-        System.out.println();
-        postOrder(buildTree());
-        System.out.println();
+        // 创建二叉树
+        BTreeNode treeNode = buildTree();
 
-//        fPreOrder(buildTree());
-//        fMidOrder(buildTree());
-//        fMidOrderV2(buildTree());
-//        fPostOrder(buildTree());
-        System.out.println();
+        // 前序遍历二叉树（递归实现）
+        System.out.print("\n前序遍历（递归实现）：");
+        preOrder(treeNode);
+
+        // 中序遍历二叉树（递归实现）
+        System.out.print("\n中序遍历（递归实现）：");
+        midOrder(treeNode);
+
+        // 后序遍历二叉树（递归实现）
+        System.out.print("\n后序遍历（递归实现）：");
+        postOrder(treeNode);
+
+        // 前序遍历二叉树（非递归实现）
+        System.out.print("\n前序遍历（非递归实现）：");
+        fPreOrder(treeNode);
+
+        // 中序遍历二叉树（非递归实现）
+        System.out.print("\n中序遍历（非递归实现）：");
+        fMidOrder(treeNode);
+
+        // 后序遍历二叉树（非递归实现）
+        System.out.print("\n后序遍历（非递归实现）：");
+        fPostOrder(treeNode);
+
+        // 层序遍历
         try {
-            levelOrder(buildTree());
+            System.out.print("\n层序遍历：");
+            levelOrder(treeNode);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
