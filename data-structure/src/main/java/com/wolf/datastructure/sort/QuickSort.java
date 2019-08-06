@@ -1,5 +1,7 @@
 package com.wolf.datastructure.sort;
 
+import com.wolf.javacommon.util.PrintUtil;
+
 /**
  * @Description 快速排序
  * @Author wangqikang
@@ -7,7 +9,18 @@ package com.wolf.datastructure.sort;
  */
 public class QuickSort {
 
+    /**
+     * 递归实现快速排序
+     *
+     * @param arr   待排序数组
+     * @param left  待排序数组的第一个元素下标
+     * @param right 待排序数组的最后一个元素下标
+     */
     public static void quickSort(int[] arr, int left, int right) {
+        if (arr == null || arr.length == 1) {
+            return;
+        }
+
         if (left < right) {
             int mid = partition(arr, left, right);
             quickSort(arr, left, mid - 1);
@@ -15,6 +28,12 @@ public class QuickSort {
         }
     }
 
+    /**
+     * @param arr   待排序数组
+     * @param left  待排序数组的第一个元素下标
+     * @param right 待排序数组的最后一个元素下标
+     * @return
+     */
     public static int partition(int[] arr, int left, int right) {
         int key = arr[left];
         while (left < right) {
@@ -35,8 +54,8 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-
         int[] arr = {2, 9, 5, 8, 3, 6, 4, 1, 7, 10, 14};
         quickSort(arr, 0, arr.length - 1);
+        PrintUtil.printArray(arr);
     }
 }
