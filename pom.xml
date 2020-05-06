@@ -13,6 +13,12 @@
         <module>java-common</module>
         <module>data-structure</module>
         <module>algorithm</module>
+        <module>programming</module>
+        <module>quartz-demo</module>
+        <module>design-parttern</module>
+        <module>serialiable-demo</module>
+        <module>concurrent</module>
+        <module>hibernate</module>
     </modules>
     <dependencyManagement>
         <dependencies>
