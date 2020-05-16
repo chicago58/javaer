@@ -1,4 +1,4 @@
-package com.wolf.javacommon;
+package com.wolf.java.common;
 
 /**
  * @Description

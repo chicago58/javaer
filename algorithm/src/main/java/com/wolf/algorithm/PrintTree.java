@@ -1,7 +1,7 @@
 package com.wolf.algorithm;
 
 
-import com.wolf.javacommon.TreeNode;
+import com.wolf.java.common.Node;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -18,7 +18,7 @@ public class PrintTree {
      *
      * @param node
      */
-    private static void preOrder(TreeNode node) {
+    private static void preOrder(Node node) {
         if (node == null) {
             return;
         }
@@ -32,7 +32,7 @@ public class PrintTree {
      *
      * @param node
      */
-    private static void midOrder(TreeNode node) {
+    private static void midOrder(Node node) {
         if (node == null) {
             return;
         }
@@ -46,7 +46,7 @@ public class PrintTree {
      *
      * @param node
      */
-    private static void postOrder(TreeNode node) {
+    private static void postOrder(Node node) {
         if (node == null) {
             return;
         }
@@ -60,11 +60,11 @@ public class PrintTree {
      *
      * @return
      */
-    private static void fPreOrder(TreeNode node) {
-        Stack<TreeNode> s = new Stack();
+    private static void fPreOrder(Node node) {
+        Stack<Node> s = new Stack();
         s.push(node);
         while (!s.empty()) {
-            TreeNode n = s.pop();
+            Node n = s.pop();
             System.out.print(n.getData() + " ");
             if (n.getRight() != null) {
                 s.push(n.getRight());
@@ -81,9 +81,9 @@ public class PrintTree {
      *
      * @return
      */
-    private static void fMidOrder(TreeNode node) {
-        Stack<TreeNode> s = new Stack();
-        TreeNode cur = node;
+    private static void fMidOrder(Node node) {
+        Stack<Node> s = new Stack();
+        Node cur = node;
         while (!s.empty() || cur != null) {
             while (cur != null) {
                 s.push(cur);
@@ -100,12 +100,12 @@ public class PrintTree {
      *
      * @return
      */
-    private static void fPostOrder(TreeNode node) {
-        Stack<TreeNode> s1 = new Stack();
-        Stack<TreeNode> s2 = new Stack();
+    private static void fPostOrder(Node node) {
+        Stack<Node> s1 = new Stack();
+        Stack<Node> s2 = new Stack();
         s1.push(node);
         while (!s1.empty()) {
-            TreeNode n = s1.pop();
+            Node n = s1.pop();
             if (n.getLeft() != null) {
                 s1.push(n.getLeft());
             }
@@ -119,11 +119,11 @@ public class PrintTree {
         }
     }
 
-    private static void levelOrder(TreeNode node) throws InterruptedException {
-        Queue<TreeNode> q = new ArrayDeque();
+    public static void levelOrder(Node node) {
+        Queue<Node> q = new ArrayDeque();
         q.add(node);
         while (!q.isEmpty()) {
-            TreeNode n = q.poll();
+            Node n = q.poll();
             System.out.print(n.getData() + " ");
             if (n.getLeft() != null) {
                 q.add(n.getLeft());
@@ -144,24 +144,43 @@ public class PrintTree {
      * / \
      *5  6
      */
-    private static TreeNode buildTree() {
-        TreeNode node = new TreeNode();
-        TreeNode left1 = new TreeNode();
-        TreeNode right1 = new TreeNode();
-        node.setData(1);
+    public static Node buildTree() {
+        Node node = new Node(1);
+        Node left1 = new Node(2);
+        Node right1 = new Node(3);
         node.setLeft(left1);
         node.setRight(right1);
-        right1.setData(3);
-        TreeNode right2 = new TreeNode();
-        left1.setData(2);
+        Node right2 = new Node(4);
         left1.setRight(right2);
-        TreeNode left3 = new TreeNode();
-        TreeNode right3 = new TreeNode();
-        right2.setData(4);
+        Node left3 = new Node(5);
+        Node right3 = new Node(6);
         right2.setLeft(left3);
         right2.setRight(right3);
-        left3.setData(5);
-        right3.setData(6);
+        return node;
+    }
+
+    /**
+     * 创建二叉搜索树
+     *    6
+     *  /   \
+     *  2   8
+     *  \
+     *  4
+     * / \
+     *3  5
+     */
+    public static Node buildSearchTree() {
+        Node node = new Node(6);
+        Node left1 = new Node(2);
+        Node right1 = new Node(8);
+        node.setLeft(left1);
+        node.setRight(right1);
+        Node right2 = new Node(4);
+        left1.setRight(right2);
+        Node left3 = new Node(3);
+        Node right3 = new Node(5);
+        right2.setLeft(left3);
+        right2.setRight(right3);
         return node;
     }
 
@@ -179,10 +198,6 @@ public class PrintTree {
 //        fMidOrderV2(buildTree());
 //        fPostOrder(buildTree());
         System.out.println();
-        try {
-            levelOrder(buildTree());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        levelOrder(buildTree());
     }
 }
