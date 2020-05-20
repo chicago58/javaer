@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 在根目录下创建配置文件，导入dtd约束 -->
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <!-- 配置SessionFactory，作用是创建Session对象。
+      Session对象是Hibernate操作数据库的核心对象。
+
+       创建SessionFactory必须的三部分信息：
+       一、Hibernate连接数据库的信息
+       二、Hibernate的属性配置
+       三、Hibernate映射文件的配置
+       -->
+    <session-factory>
+        <!-- Hibernate连接数据库的信息 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://devarch.db.ali-bj-dev01.shuheo.net:3306/authplus
+        </property>
+        <property name="hibernate.connection.username">authplus</property>
+        <property name="hibernate.connection.password">1qaz@WSX</property>
+
+        <!-- Hibernate的属性配置 -->
+        <!-- Hibernate的方言，根据方言生成相应的SQL语句 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!-- 是否显示Hibernate生成SQL语句 -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- 是否使用格式化输出SQL语句到控制台 -->
+        <property name="hibernate.format_sql">true</property>
+        <!-- 采用何种方式生成DDL语句，update表示检测实体类的映射配置和数据库的表结构是否一致，若不一致，则更新表结构 -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--
+            - none：不用Hibernate自动生成表
+            - create：每次都会创建新的表（测试）
+            - create-drop：每次都会创建新的表，程序执行结束后删除该表（测试）
+            - update：若数据库中有表，则使用原来的表；否则创建一个新表，可以更新表结构
+            - validate：只使用原来的表，并对映射关系进行校验
+        -->
+
+        <!-- SQL结构化查询语句包含六个部分
+         DDL:Data Definition Language
+         DML:Data Manipulation Language
+         DQL:Date Query Language
+         DCL:Data Control Language 数据控制语言
+         CCL:Cursor Control Language 游标控制语言
+         TPL:Transaction Processing Language 事务处理语言
+         -->
+
+        <!-- Hibernate连接池供应商（默认JDBC连接） -->
+        <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+
+        <!-- Hibernate映射文件的配置 -->
+        <mapping resource="com/wolf/domain/Customer.hbm.xml"></mapping>
+
+    </session-factory>
+</hibernate-configuration>
